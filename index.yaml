@@ -1,6 +1,85 @@
 apiVersion: v1
 entries:
+  enterprise-logs:
+  - apiVersion: v2
+    appVersion: v1.5.2
+    created: "2023-11-28T17:59:31.029897638Z"
+    dependencies:
+    - name: loki-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: 0.55.0
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://helm.min.io/
+      version: 8.0.9
+    description: Grafana Enterprise Logs
+    digest: d948ffebd55cd725d1ccea6d6571225ff9bd79b285294cec6bbdb8a4895566d6
+    home: https://grafana.com/products/enterprise/logs/
+    kubeVersion: ^1.10.0-0
+    name: enterprise-logs
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/enterprise-logs-2.5.0/enterprise-logs-2.5.0.tgz
+    version: 2.5.0
+  enterprise-logs-simple:
+  - apiVersion: v2
+    appVersion: v1.4.0
+    created: "2023-11-28T17:59:31.179729373Z"
+    dependencies:
+    - name: loki-simple-scalable
+      repository: https://grafana.github.io/helm-charts
+      version: ^0.3.0
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://helm.min.io/
+      version: 8.0.9
+    deprecated: true
+    description: DEPRECATED Grafana Enterprise Logs (Simple Scalable)
+    digest: df921cdd70d98d8451f230fb031d961e86f01cc717a1e6b16db5f63f69f15422
+    home: https://grafana.com/products/enterprise/logs/
+    kubeVersion: ^1.10.0-0
+    name: enterprise-logs-simple
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/enterprise-logs-simple-1.3.0/enterprise-logs-simple-1.3.0.tgz
+    version: 1.3.0
   enterprise-metrics:
+  - apiVersion: v2
+    appVersion: v1.7.0
+    created: "2023-11-28T17:59:31.346982303Z"
+    dependencies:
+    - alias: memcached
+      condition: memcached.enabled
+      name: memcached
+      repository: https://charts.bitnami.com/bitnami
+      version: 6.1.11
+    - alias: memcached-queries
+      condition: memcached-queries.enabled
+      name: memcached
+      repository: https://charts.bitnami.com/bitnami
+      version: 6.1.11
+    - alias: memcached-metadata
+      condition: memcached-metadata.enabled
+      name: memcached
+      repository: https://charts.bitnami.com/bitnami
+      version: 6.1.11
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://helm.min.io/
+      version: 8.0.9
+    deprecated: true
+    description: DEPRECATED Grafana Enterprise Metrics
+    digest: 80699943f2cb91bdfe17ba2700345f075f69ddaf8f5094f5c33482285045cabd
+    home: https://grafana.com/products/enterprise/metrics
+    icon: https://grafana.com/static/img/menu/metrics-enterprise.svg
+    kubeVersion: ^1.10.0-0
+    name: enterprise-metrics
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/enterprise-metrics-1.10.0/enterprise-metrics-1.10.0.tgz
+    version: 1.10.0
   - apiVersion: v2
     appVersion: v1.1.2
     created: "2021-03-03T20:08:58.502706749Z"
@@ -40,6 +119,25 @@ entries:
     - https://github.com/grafana/helm-charts/releases/download/enterprise-metrics-1.0.0/enterprise-metrics-1.0.0.tgz
     version: 1.0.0
   fluent-bit:
+  - apiVersion: v1
+    appVersion: v2.1.0
+    created: "2023-11-28T17:59:31.480309562Z"
+    deprecated: true
+    description: Uses fluent-bit Loki go plugin for gathering logs and sending them
+      to Loki
+    digest: 0c3354e902b44fa971f848ee9b53cf86e4219989ece45b5b4c0163475f9694f2
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    name: fluent-bit
+    sources:
+    - https://github.com/grafana/loki
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/fluent-bit-2.6.0/fluent-bit-2.6.0.tgz
+    version: 2.6.0
   - apiVersion: v1
     appVersion: v2.1.0
     created: "2020-12-24T15:07:11.404389629Z"
@@ -383,6 +481,43 @@ entries:
     - https://grafana.github.io/helm-charts/packages/fluent-bit-0.0.1.tgz
     version: 0.0.1
   grafana:
+  - annotations:
+      artifacthub.io/license: AGPL-3.0-only
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Upstream Project
+          url: https://github.com/grafana/grafana
+    apiVersion: v2
+    appVersion: 10.1.5
+    created: "2023-11-28T17:59:31.650590682Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 6c506f959b6339305407de43dee15812905d3fd3e7d5278c844c5dc85299d6eb
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    keywords:
+    - monitoring
+    - metric
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/helm-charts
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/grafana-7.0.9/grafana-7.0.9.tgz
+    version: 7.0.9
   - apiVersion: v2
     appVersion: 7.4.2
     created: "2021-03-10T22:23:23.906055101Z"
@@ -7042,6 +7177,78 @@ entries:
     urls:
     - https://grafana.github.io/helm-charts/packages/grafana-0.2.0.tgz
     version: 0.2.0
+  grafana-agent-operator:
+  - apiVersion: v2
+    appVersion: 0.38.0
+    created: "2023-11-28T17:59:31.77920245Z"
+    description: A Helm chart for Grafana Agent Operator
+    digest: 1a66be42a0466766a89b951496d6ff4f2a4ea64b0277a4a38082dd9f5f74b090
+    home: https://grafana.com/docs/agent/v0.38/
+    icon: https://raw.githubusercontent.com/grafana/agent/v0.38.0/docs/sources/assets/logo_and_name.png
+    maintainers:
+    - email: grafana-agent-team@googlegroups.com
+      name: Grafana Agent Team
+    name: grafana-agent-operator
+    sources:
+    - https://github.com/grafana/agent/tree/v0.38.0/pkg/operator
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/grafana-agent-operator-0.3.11/grafana-agent-operator-0.3.11.tgz
+    version: 0.3.11
+  lgtm-distributed:
+  - annotations:
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Grafana
+          url: https://github.com/grafana/grafana
+        - name: Loki
+          url: https://github.com/grafana/loki
+        - name: Mimir
+          url: https://github.com/grafana/mimir
+        - name: Tempo
+          url: https://github.com/grafana/tempo
+    apiVersion: v2
+    appVersion: 6.59.4
+    created: "2023-11-28T17:59:31.978080166Z"
+    dependencies:
+    - alias: grafana
+      condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: ^6.59.4
+    - alias: loki
+      condition: loki.enabled
+      name: loki-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: ^0.74.3
+    - alias: mimir
+      condition: mimir.enabled
+      name: mimir-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: ^5.0.0
+    - alias: tempo
+      condition: tempo.enabled
+      name: tempo-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: ^1.6.4
+    description: Umbrella chart for a distributed Loki, Grafana, Tempo and Mimir stack
+    digest: be74305a8d5552cca7589caae5bb81a8fbad865b9d948d7efe4dd93f7b4e8e8d
+    home: https://grafana.com/oss/
+    icon: https://artifacthub.io/image/b4fed1a7-6c8f-4945-b99d-096efa3e4116
+    maintainers:
+    - name: timberhill
+    name: lgtm-distributed
+    sources:
+    - https://grafana.github.io/helm-charts
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/loki
+    - https://github.com/grafana/mimir
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/lgtm-distributed-1.0.0/lgtm-distributed-1.0.0.tgz
+    version: 1.0.0
   loki:
   - apiVersion: v1
     appVersion: v2.2.0
@@ -8031,6 +8238,24 @@ entries:
     version: 0.5.0
   loki-canary:
   - apiVersion: v2
+    appVersion: 2.9.1
+    created: "2023-11-28T17:59:32.15201987Z"
+    description: Helm chart for Grafana Loki Canary
+    digest: 1ff90912efc783594cd7e415f0bef0367c743088a1a03e8a1c88e48fe3f8816b
+    home: https://github.com/grafana/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: unguiculus
+    name: loki-canary
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/loki-canary-0.14.0/loki-canary-0.14.0.tgz
+    version: 0.14.0
+  - apiVersion: v2
     appVersion: 2.1.0
     created: "2020-12-24T15:07:11.594399289Z"
     description: Helm chart for Grafana Loki Canary
@@ -8085,6 +8310,24 @@ entries:
     - https://github.com/grafana/helm-charts/releases/download/loki-canary-0.1.2/loki-canary-0.1.2.tgz
     version: 0.1.2
   loki-distributed:
+  - apiVersion: v2
+    appVersion: 2.9.2
+    created: "2023-11-28T17:59:32.334205368Z"
+    description: Helm chart for Grafana Loki in microservices mode
+    digest: 98802c1a3b2401785cee5dbdd4ccada16d23d44aaa14626ef2f600b629ddd4af
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: unguiculus
+    name: loki-distributed
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/loki-distributed-0.76.1/loki-distributed-0.76.1.tgz
+    version: 0.76.1
   - apiVersion: v2
     appVersion: 2.2.0
     created: "2021-03-11T15:26:34.887540457Z"
@@ -8356,6 +8599,52 @@ entries:
     - https://github.com/grafana/helm-charts/releases/download/loki-distributed-0.19.4/loki-distributed-0.19.4.tgz
     version: 0.19.4
   loki-stack:
+  - apiVersion: v1
+    appVersion: v2.6.1
+    created: "2023-11-28T17:59:32.501555187Z"
+    dependencies:
+    - condition: loki.enabled
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: ^2.15.2
+    - condition: promtail.enabled
+      name: promtail
+      repository: https://grafana.github.io/helm-charts
+      version: ^6.7.4
+    - condition: fluent-bit.enabled
+      name: fluent-bit
+      repository: https://grafana.github.io/helm-charts
+      version: ^2.3.0
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: ~6.43.0
+    - condition: prometheus.enabled
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: ~15.5.3
+    - condition: filebeat.enabled
+      name: filebeat
+      repository: https://helm.elastic.co
+      version: ~7.17.1
+    - condition: logstash.enabled
+      name: logstash
+      repository: https://helm.elastic.co
+      version: ~7.17.1
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: 62f774ef886d8e43a7e8ba14b00bc91875c37186e4268c9e21b2dc5668233694
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    name: loki-stack
+    sources:
+    - https://github.com/grafana/loki
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/loki-stack-2.9.11/loki-stack-2.9.11.tgz
+    version: 2.9.11
   - apiVersion: v1
     appVersion: v2.1.0
     created: "2021-01-03T21:48:27.777261225Z"
@@ -11752,6 +12041,27 @@ entries:
     version: 0.6.0
   promtail:
   - apiVersion: v2
+    appVersion: 2.9.2
+    created: "2023-11-28T17:59:32.628147093Z"
+    description: Promtail is an agent which ships the contents of local logs to a
+      Loki instance
+    digest: ebaba01d4f5a5ed6284b9c261da813dc403ac03aeb233fe74869b4816c9f4e98
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    - name: unguiculus
+    name: promtail
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/promtail-6.15.3/promtail-6.15.3.tgz
+    version: 6.15.3
+  - apiVersion: v2
     appVersion: 2.2.0
     created: "2021-03-11T15:25:31.276651871Z"
     description: Promtail is an agent which ships the contents of local logs to a
@@ -12874,7 +13184,82 @@ entries:
     urls:
     - https://grafana.github.io/helm-charts/packages/promtail-0.6.0.tgz
     version: 0.6.0
+  rollout-operator:
+  - apiVersion: v2
+    appVersion: v0.9.0
+    created: "2023-11-28T17:59:32.776329732Z"
+    description: Grafana rollout-operator
+    digest: 1a3afc993931cff5f2f83d9747be32ab9eddf61d4254f63b2c95d6de2988fd67
+    home: https://github.com/grafana/rollout-operator
+    kubeVersion: ^1.10.0-0
+    name: rollout-operator
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/rollout-operator-0.10.0/rollout-operator-0.10.0.tgz
+    version: 0.10.0
+  snyk-exporter:
+  - apiVersion: v2
+    appVersion: v1.4.1
+    created: "2023-11-28T17:59:32.900666656Z"
+    description: Prometheus exporter for Snyk.
+    digest: 8841101eea5a2da2866f3102c8bfaaa8c7214fffacb75b4060c36f349ea3a690
+    home: https://github.com/grafana/snyk_exporter
+    icon: https://res.cloudinary.com/snyk/image/upload/v1537346326/press-kit/brand/avatar.png
+    maintainers:
+    - email: jiri.tyr@gmail.com
+      name: jtyr
+    name: snyk-exporter
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/snyk-exporter-0.1.0/snyk-exporter-0.1.0.tgz
+    version: 0.1.0
+  synthetic-monitoring-agent:
+  - apiVersion: v2
+    appVersion: v0.9.3-0-gcd7aadd
+    created: "2023-11-28T17:59:33.032678259Z"
+    description: Grafana's Synthetic Monitoring application. The agent provides probe
+      functionality and executes network checks for monitoring remote targets.
+    digest: 64a418aede1311ae29ca1fac0283dc943a8aa26361423138eb963b079958fe2c
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.16.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    - email: scott.crooks@gmail.com
+      name: sc250024
+    name: synthetic-monitoring-agent
+    sources:
+    - https://github.com/grafana/synthetic-monitoring-agent
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/synthetic-monitoring-agent-0.2.0/synthetic-monitoring-agent-0.2.0.tgz
+    version: 0.2.0
   tempo:
+  - apiVersion: v2
+    appVersion: 2.3.0
+    created: "2023-11-28T17:59:33.189565491Z"
+    description: Grafana Tempo Single Binary Mode
+    digest: 721e3699326a816221d7fa228b49f73f7ec81b762844a03d30c5058507c472ef
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    maintainers:
+    - email: number101010@gmail.com
+      name: joe-elliott
+    - email: 9215868@gmail.com
+      name: swartz-k
+    - name: annanay25
+    - name: mdisibio
+    - name: dgzlopes
+    - name: mapno
+    name: tempo
+    sources:
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-1.7.1/tempo-1.7.1.tgz
+    version: 1.7.1
   - apiVersion: v2
     appVersion: v0.6.0
     created: "2021-03-11T14:18:58.498983793Z"
@@ -12971,6 +13356,42 @@ entries:
     - https://github.com/grafana/helm-charts/releases/download/tempo-0.5.0/tempo-0.5.0.tgz
     version: 0.5.0
   tempo-distributed:
+  - apiVersion: v2
+    appVersion: 2.3.0
+    created: "2023-11-28T17:59:33.358033943Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 4.0.12
+    - alias: grafana-agent-operator
+      condition: metaMonitoring.grafanaAgent.installOperator
+      name: grafana-agent-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.2.2
+    description: Grafana Tempo in MicroService mode
+    digest: 707120fb257c4f4754dbfb6079b5888dee9c39cb0093fd94505a9f20a06f81fa
+    home: https://grafana.com/docs/tempo/latest/
+    icon: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    maintainers:
+    - email: number101010@gmail.com
+      name: joe-elliott
+    - email: 9215868@gmail.com
+      name: swartz-k
+    - name: annanay25
+    - name: mdisibio
+    - name: mapno
+    - name: BitProcessor
+    - name: faustodavid
+    - name: zalegrala
+    name: tempo-distributed
+    sources:
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-distributed-1.7.1/tempo-distributed-1.7.1.tgz
+    version: 1.7.1
   - apiVersion: v2
     appVersion: 0.6.0
     created: "2021-03-10T14:12:41.469142872Z"
@@ -13142,4 +13563,22 @@ entries:
     urls:
     - https://github.com/grafana/helm-charts/releases/download/tempo-distributed-0.6.0/tempo-distributed-0.6.0.tgz
     version: 0.6.0
-generated: "2021-03-11T16:04:17.478800136Z"
+  tempo-vulture:
+  - apiVersion: v2
+    appVersion: 2.2.3
+    created: "2023-11-28T17:59:33.472249027Z"
+    description: Grafana Tempo Vulture - A tool to monitor Tempo performance.
+    digest: 32afa10dd57b501ba6738d094b684d4d8cb3d0df992ce8525542782abbf3d1ea
+    home: https://grafana.com/docs/tempo/latest/
+    icon: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    maintainers:
+    - email: number101010@gmail.com
+      name: Joe Elliott
+    name: tempo-vulture
+    sources:
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-vulture-0.4.1/tempo-vulture-0.4.1.tgz
+    version: 0.4.1
+generated: "2023-11-28T17:59:33.473724705Z"

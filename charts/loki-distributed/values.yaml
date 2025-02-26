@@ -78,6 +78,10 @@ loki:
   existingSecretForConfig: ""
   # -- Store the loki configuration as a secret.
   configAsSecret: false
+  # -- Annotations for the secret with loki configuration.
+  configSecretAnnotations: {}
+  # -- Additional labels for the secret with loki configuration.
+  configSecretLabels: {}
   # -- Adds the appProtocol field to the memberlist service. This allows memberlist to work with istio protocol selection. Ex: "http" or "tcp"
   appProtocol: ""
   # -- Common annotations for all loki services
@@ -104,6 +108,7 @@ loki:
           store: memberlist
 
     memberlist:
+      cluster_label: "{{ .Release.Name }}.{{ .Release.Namespace }}"
       join_members:
         - {{ include "loki.fullname" . }}-memberlist
 
@@ -208,6 +213,7 @@ loki:
 
     compactor:
       shared_store: filesystem
+      working_directory: /var/loki/compactor
 
     ruler:
       storage:
@@ -283,6 +289,12 @@ serviceMonitor:
   namespace: null
   # -- Namespace selector for ServiceMonitor resources
   namespaceSelector: {}
+  # -- Optional expressions to match on
+  matchExpressions: []
+    # - key: prometheus.io/service-monitor
+    #   operator: NotIn
+    #   values:
+    #     - "false"
   # -- ServiceMonitor annotations
   annotations: {}
   # -- Additional ServiceMonitor labels
@@ -423,7 +435,7 @@ ingester:
   podLabels: {}
   # -- Annotations for ingester pods
   podAnnotations: {}
-  # -- Labels for ingestor service
+  # -- Labels for ingester service
   serviceLabels: {}
   # -- Additional CLI args for the ingester
   extraArgs: []
@@ -441,7 +453,7 @@ ingester:
   extraContainers: []
   # -- Init containers to add to the ingester pods
   initContainers: []
-  # -- Grace period to allow the ingester to shutdown before it is killed. Especially for the ingestor,
+  # -- Grace period to allow the ingester to shutdown before it is killed. Especially for the ingester,
   # this must be increased. It must be long enough so ingesters can be gracefully shutdown flushing/transferring
   # all data and to successfully leave the member ring on shutdown.
   terminationGracePeriodSeconds: 300
@@ -1049,7 +1061,7 @@ gateway:
     # -- The gateway image repository
     repository: nginxinc/nginx-unprivileged
     # -- The gateway image tag
-    tag: 1.20.2-alpine
+    tag: 1.27.3-alpine
     # -- The gateway image pull policy
     pullPolicy: IfNotPresent
   # -- The name of the PriorityClass for gateway pods
@@ -1273,16 +1285,20 @@ gateway:
 
           # Ruler
           location ~ /prometheus/api/v1/alerts.* {
-            proxy_pass       http://{{ include "loki.rulerFullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}:3100$request_uri;
+            set $prometheus_api_v1_alerts_backend http://{{ include "loki.rulerFullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }};
+            proxy_pass       $prometheus_api_v1_alerts_backend:3100$request_uri;
           }
           location ~ /prometheus/api/v1/rules.* {
-            proxy_pass       http://{{ include "loki.rulerFullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}:3100$request_uri;
+            set $prometheus_api_v1_rules_backend http://{{ include "loki.rulerFullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }};
+            proxy_pass       $prometheus_api_v1_rules_backend:3100$request_uri;
           }
           location ~ /api/prom/rules.* {
-            proxy_pass       http://{{ include "loki.rulerFullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}:3100$request_uri;
+            set $api_prom_rules_backend http://{{ include "loki.rulerFullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }};
+            proxy_pass       $api_prom_rules_backend:3100$request_uri;
           }
           location ~ /api/prom/alerts.* {
-            proxy_pass       http://{{ include "loki.rulerFullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}:3100$request_uri;
+            set $api_prom_alerts_backend http://{{ include "loki.rulerFullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }};
+            proxy_pass       $api_prom_alerts_backend:3100$request_uri;
           }
 
           location ~ /api/prom/.* {
@@ -1319,6 +1335,10 @@ gateway:
 
 # Configuration for the compactor
 compactor:
+  # -- Kind of deployment [StatefulSet/Deployment]
+  kind: StatefulSet
+  # -- Number of replicas for the compactor
+  replicas: 1
   # -- Specifies whether compactor should be enabled
   enabled: false
   # -- hostAliases to add
@@ -1369,6 +1389,10 @@ compactor:
   extraVolumeMounts: []
   # -- Volumes to add to the compactor pods
   extraVolumes: []
+  # -- readiness probe settings for ingester pods. If empty, use `loki.readinessProbe`
+  readinessProbe: {}
+  # -- liveness probe settings for ingester pods. If empty use `loki.livenessProbe`
+  livenessProbe: {}
   # -- Resource requests and limits for the compactor
   resources: {}
   # -- Containers to add to the compactor pods
@@ -1397,6 +1421,24 @@ compactor:
     storageClass: null
     # -- Annotations for compactor PVCs
     annotations: {}
+    # -- List of the compactor PVCs
+    # @notationType -- list
+    claims:
+      - name: data
+        size: 10Gi
+        #   -- Storage class to be used.
+        #   If defined, storageClassName: <storageClass>.
+        #   If set to "-", storageClassName: "", which disables dynamic provisioning.
+        #   If empty or set to null, no storageClassName spec is
+        #   set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
+        storageClass: null
+      # - name: wal
+      #   size: 150Gi
+    # -- Enable StatefulSetAutoDeletePVC feature
+    enableStatefulSetAutoDeletePVC: false
+    whenDeleted: Retain
+    whenScaled: Retain
+
   serviceAccount:
     create: false
     # -- The name of the ServiceAccount to use for the compactor.

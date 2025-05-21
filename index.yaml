@@ -527,6 +527,45 @@ entries:
           url: https://github.com/grafana/grafana
     apiVersion: v2
     appVersion: 12.0.0
+    created: "2025-05-21T23:21:51.377183156Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: ea3fe45d25fa96664f5b3487a13f76f21fc219522492240203321829852a85df
+    home: https://grafana.com
+    icon: https://artifacthub.io/image/b4fed1a7-6c8f-4945-b99d-096efa3e4116
+    keywords:
+    - monitoring
+    - metric
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    - email: github@jkroepke.de
+      name: jkroepke
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/helm-charts
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/grafana-9.0.1/grafana-9.0.1.tgz
+    version: 9.0.1
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Upstream Project
+          url: https://github.com/grafana/grafana
+    apiVersion: v2
+    appVersion: 12.0.0
     created: "2025-05-07T11:21:47.228197452Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: d6314e390782ca64b930c92578fa8ac7604bdfce7f4b3e1c9b3a167404f305db
@@ -13800,6 +13839,18 @@ entries:
     version: 0.6.0
   rollout-operator:
   - apiVersion: v2
+    appVersion: v0.27.0
+    created: "2025-05-21T23:21:51.518573173Z"
+    description: Grafana rollout-operator
+    digest: 89bf99be30717fa3f687fcb3185634fff1a2f699306b064885d7495d83bfe02a
+    home: https://github.com/grafana/rollout-operator
+    kubeVersion: ^1.10.0-0
+    name: rollout-operator
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/rollout-operator-0.29.0/rollout-operator-0.29.0.tgz
+    version: 0.29.0
+  - apiVersion: v2
     appVersion: v0.26.0
     created: "2025-04-30T23:21:45.496166371Z"
     description: Grafana rollout-operator
@@ -14066,6 +14117,49 @@ entries:
     - https://github.com/grafana/helm-charts/releases/download/tempo-0.5.0/tempo-0.5.0.tgz
     version: 0.5.0
   tempo-distributed:
+  - apiVersion: v2
+    appVersion: 2.7.2
+    created: "2025-05-21T23:21:51.634583304Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 4.0.12
+    - alias: grafana-agent-operator
+      condition: metaMonitoring.grafanaAgent.installOperator
+      name: grafana-agent-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.5.0
+    - alias: rollout_operator
+      condition: rollout_operator.enabled
+      name: rollout-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.24.0
+    description: Grafana Tempo in MicroService mode
+    digest: 27ae4d7f1b2a0eb11a899b7586339edec1a5578485ee0b73dc635cd4a55f2707
+    home: https://grafana.com/docs/tempo/latest/
+    icon: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    maintainers:
+    - email: number101010@gmail.com
+      name: joe-elliott
+    - email: 9215868@gmail.com
+      name: swartz-k
+    - name: annanay25
+    - name: mdisibio
+    - name: mapno
+    - name: BitProcessor
+    - name: faustodavid
+    - name: zalegrala
+    - email: sheikhabubaker761@gmail.com
+      name: Sheikh-Abubaker
+    name: tempo-distributed
+    sources:
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-distributed-1.40.0/tempo-distributed-1.40.0.tgz
+    version: 1.40.0
   - apiVersion: v2
     appVersion: 2.7.2
     created: "2025-05-12T11:21:51.932402973Z"
@@ -14566,4 +14660,4 @@ entries:
     urls:
     - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-vulture-0.4.1/tempo-vulture-0.4.1.tgz
     version: 0.4.1
-generated: "2025-05-12T11:21:51.934182747Z"
+generated: "2025-05-21T23:21:51.636402308Z"

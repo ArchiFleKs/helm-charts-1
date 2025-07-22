@@ -12795,6 +12795,21 @@ entries:
     urls:
     - https://grafana.github.io/helm-charts/packages/loki-stack-0.6.0.tgz
     version: 0.6.0
+  pdc-agent:
+  - apiVersion: v2
+    appVersion: 0.0.45
+    created: "2025-07-22T23:21:44.882147974Z"
+    description: PDC agent is an agent for connecting to Grafana Private Data source
+      Connect
+    digest: 18202a758130341c444bbb99b9c7145c38eeb3dbb6134b497b1d4fe1a926b3cd
+    home: https://grafana.com/docs/grafana-cloud/connect-externally-hosted/private-data-source-connect/
+    name: pdc-agent
+    sources:
+    - https://github.com/grafana/pdc-agent
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/pdc-agent-0.0.1/pdc-agent-0.0.1.tgz
+    version: 0.0.1
   promtail:
   - apiVersion: v2
     appVersion: 3.5.1
@@ -14945,4 +14960,4 @@ entries:
     urls:
     - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-vulture-0.4.1/tempo-vulture-0.4.1.tgz
     version: 0.4.1
-generated: "2025-07-20T00:45:36.411849634Z"
+generated: "2025-07-22T23:21:44.883049182Z"

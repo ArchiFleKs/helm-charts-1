@@ -7915,6 +7915,29 @@ entries:
     version: 0.1.0
   grafana-sampling:
   - apiVersion: v2
+    appVersion: v1.10.1
+    created: "2025-08-14T05:21:50.624201196Z"
+    dependencies:
+    - alias: alloy-deployment
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 1.2.1
+    - alias: alloy-statefulset
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 1.2.1
+    description: A Helm chart for a layered OTLP tail sampling and metrics generation
+      pipeline.
+    digest: bf21d75e8931e8536eee7b5896470feedd27dc15e6b99ebfe53808e4128b0111
+    name: grafana-sampling
+    sources:
+    - https://github.com/grafana/alloy
+    - https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/setup/sampling/tail/
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/grafana-sampling-1.1.6/grafana-sampling-1.1.6.tgz
+    version: 1.1.6
+  - apiVersion: v2
     appVersion: v1.7.5
     created: "2025-04-22T11:22:34.895238371Z"
     dependencies:
@@ -14293,6 +14316,31 @@ entries:
     version: 0.2.0
   tempo:
   - apiVersion: v2
+    appVersion: 2.8.2
+    created: "2025-08-14T05:21:50.804909298Z"
+    description: Grafana Tempo Single Binary Mode
+    digest: 38b4f8b2bfbc467f0e0743416abc0669d00a0af2f0df5231555f9d83f203e06e
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    maintainers:
+    - email: number101010@gmail.com
+      name: joe-elliott
+    - email: 9215868@gmail.com
+      name: swartz-k
+    - name: annanay25
+    - name: mdisibio
+    - name: dgzlopes
+    - name: mapno
+    - email: sheikhabubaker761@gmail.com
+      name: Sheikh-Abubaker
+    name: tempo
+    sources:
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-1.23.3/tempo-1.23.3.tgz
+    version: 1.23.3
+  - apiVersion: v2
     appVersion: 2.8.1
     created: "2025-07-14T23:21:58.407729873Z"
     description: Grafana Tempo Single Binary Mode
@@ -15261,4 +15309,4 @@ entries:
     urls:
     - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-vulture-0.4.1/tempo-vulture-0.4.1.tgz
     version: 0.4.1
-generated: "2025-08-12T11:21:45.426014613Z"
+generated: "2025-08-14T05:21:50.805806683Z"

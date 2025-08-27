@@ -14328,6 +14328,18 @@ entries:
     version: 0.6.0
   rollout-operator:
   - apiVersion: v2
+    appVersion: v0.29.0
+    created: "2025-08-27T05:21:43.806761444Z"
+    description: Grafana rollout-operator
+    digest: 6d8adeb1d7bdcd4f9c56217c2f4b3b72c98e47e3dd297fb94c8abc0f43ff435f
+    home: https://github.com/grafana/rollout-operator
+    kubeVersion: ^1.10.0-0
+    name: rollout-operator
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/rollout-operator-0.32.0/rollout-operator-0.32.0.tgz
+    version: 0.32.0
+  - apiVersion: v2
     appVersion: v0.28.0
     created: "2025-08-20T17:21:55.537724367Z"
     description: Grafana rollout-operator
@@ -15580,4 +15592,4 @@ entries:
     urls:
     - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-vulture-0.4.1/tempo-vulture-0.4.1.tgz
     version: 0.4.1
-generated: "2025-08-26T17:22:20.015588736Z"
+generated: "2025-08-27T05:21:43.808748964Z"

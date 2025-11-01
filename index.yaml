@@ -8639,6 +8639,73 @@ entries:
           url: https://github.com/grafana/oncall
     apiVersion: v2
     appVersion: ^12.1.1
+    created: "2025-11-01T11:22:06.592276838Z"
+    dependencies:
+    - alias: grafana
+      condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: ^10.0.0
+    - alias: loki
+      condition: loki.enabled
+      name: loki-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: ^0.80.5
+    - alias: mimir
+      condition: mimir.enabled
+      name: mimir-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: ^5.8.0
+    - alias: tempo
+      condition: tempo.enabled
+      name: tempo-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: ^1.48.0
+    - alias: grafana-oncall
+      condition: grafana-oncall.enabled
+      name: oncall
+      repository: https://grafana.github.io/helm-charts
+      version: ^1.16.5
+    deprecated: true
+    description: Umbrella chart for a distributed Loki, Grafana, Tempo and Mimir stack
+    digest: 4df1ae8cb8068995f66bb8cd4198e50e601129608b50869b8d66a0df7ecc7402
+    home: https://grafana.com/oss/
+    icon: https://artifacthub.io/image/b4fed1a7-6c8f-4945-b99d-096efa3e4116
+    keywords:
+    - monitoring
+    - traces
+    - metrics
+    - logs
+    maintainers:
+    - name: timberhill
+    name: lgtm-distributed
+    sources:
+    - https://grafana.github.io/helm-charts
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/loki
+    - https://github.com/grafana/mimir
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/lgtm-distributed-3.0.1/lgtm-distributed-3.0.1.tgz
+    version: 3.0.1
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Grafana
+          url: https://github.com/grafana/grafana
+        - name: Loki
+          url: https://github.com/grafana/loki
+        - name: Mimir
+          url: https://github.com/grafana/mimir
+        - name: Tempo
+          url: https://github.com/grafana/tempo
+        - name: Oncall
+          url: https://github.com/grafana/oncall
+    apiVersion: v2
+    appVersion: ^12.1.1
     created: "2025-10-31T17:22:04.967883738Z"
     dependencies:
     - alias: grafana
@@ -15503,6 +15570,51 @@ entries:
   tempo-distributed:
   - apiVersion: v2
     appVersion: 2.9.0
+    created: "2025-11-01T11:22:06.720079524Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 4.0.12
+    - alias: grafana-agent-operator
+      condition: metaMonitoring.grafanaAgent.installOperator
+      name: grafana-agent-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.5.1
+    - alias: rollout_operator
+      condition: rollout_operator.enabled
+      name: rollout-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.35.1
+    description: Grafana Tempo in MicroService mode
+    digest: 56120fd702749e3243265513454cf9892265b94d1fb1ac3696e71f1b5ecdf20f
+    home: https://grafana.com/docs/tempo/latest/
+    icon: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    maintainers:
+    - email: number101010@gmail.com
+      name: joe-elliott
+    - email: 9215868@gmail.com
+      name: swartz-k
+    - name: annanay25
+    - name: mdisibio
+    - name: mapno
+    - name: BitProcessor
+    - name: faustodavid
+    - name: zalegrala
+    - email: sheikhabubaker761@gmail.com
+      name: Sheikh-Abubaker
+    - email: quentin.bisson@gmail.com
+      name: QuentinBisson
+    name: tempo-distributed
+    sources:
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-distributed-1.52.6/tempo-distributed-1.52.6.tgz
+    version: 1.52.6
+  - apiVersion: v2
+    appVersion: 2.9.0
     created: "2025-10-31T05:21:59.330831814Z"
     dependencies:
     - alias: minio
@@ -16926,4 +17038,4 @@ entries:
     urls:
     - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-vulture-0.4.1/tempo-vulture-0.4.1.tgz
     version: 0.4.1
-generated: "2025-10-31T23:22:02.913513588Z"
+generated: "2025-11-01T11:22:06.721079094Z"

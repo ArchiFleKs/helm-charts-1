@@ -15346,6 +15346,32 @@ entries:
   synthetic-monitoring-agent:
   - apiVersion: v2
     appVersion: v0.38.3
+    created: "2025-11-12T23:22:01.876884748Z"
+    description: 'Grafana''s Synthetic Monitoring application. The agent provides
+      probe functionality and executes network checks for monitoring remote targets.  >
+      [!NOTE] > Grafana Cloud Synthetic Monitoring does not officially support this
+      chart. > If you are a Grafana Cloud customer and require support, please follow
+      the [recommended installation methods](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#deployment-with-kubernetes)
+      listed in the public docs. '
+    digest: 09afe61beca092b81470e50da530700bd58ef897f3d13dbd1cf2838745a0cebf
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    - email: scott.crooks@gmail.com
+      name: sc250024
+    name: synthetic-monitoring-agent
+    sources:
+    - https://github.com/grafana/synthetic-monitoring-agent
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/synthetic-monitoring-agent-1.1.1/synthetic-monitoring-agent-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
+    appVersion: v0.38.3
     created: "2025-07-29T11:21:49.69125526Z"
     description: Grafana's Synthetic Monitoring application. The agent provides probe
       functionality and executes network checks for monitoring remote targets.
@@ -15656,6 +15682,51 @@ entries:
     - https://github.com/grafana/helm-charts/releases/download/tempo-0.5.0/tempo-0.5.0.tgz
     version: 0.5.0
   tempo-distributed:
+  - apiVersion: v2
+    appVersion: 2.9.0
+    created: "2025-11-12T23:22:02.145253899Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 4.1.0
+    - alias: grafana-agent-operator
+      condition: metaMonitoring.grafanaAgent.installOperator
+      name: grafana-agent-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.5.1
+    - alias: rollout_operator
+      condition: rollout_operator.enabled
+      name: rollout-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.37.1
+    description: Grafana Tempo in MicroService mode
+    digest: e97d7d046a10a8a717b9ea6f636f2f48088e72a0535711c7e0c0d0004dabee92
+    home: https://grafana.com/docs/tempo/latest/
+    icon: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    maintainers:
+    - email: number101010@gmail.com
+      name: joe-elliott
+    - email: 9215868@gmail.com
+      name: swartz-k
+    - name: annanay25
+    - name: mdisibio
+    - name: mapno
+    - name: BitProcessor
+    - name: faustodavid
+    - name: zalegrala
+    - email: sheikhabubaker761@gmail.com
+      name: Sheikh-Abubaker
+    - email: quentin.bisson@gmail.com
+      name: QuentinBisson
+    name: tempo-distributed
+    sources:
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-distributed-1.56.0/tempo-distributed-1.56.0.tgz
+    version: 1.56.0
   - apiVersion: v2
     appVersion: 2.9.0
     created: "2025-11-10T23:22:02.074536368Z"
@@ -17486,4 +17557,4 @@ entries:
     urls:
     - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-vulture-0.4.1/tempo-vulture-0.4.1.tgz
     version: 0.4.1
-generated: "2025-11-10T23:22:02.075606079Z"
+generated: "2025-11-12T23:22:02.146317289Z"

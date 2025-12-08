@@ -14084,6 +14084,20 @@ entries:
   pdc-agent:
   - apiVersion: v2
     appVersion: 0.0.45
+    created: "2025-12-08T11:21:50.950636857Z"
+    description: PDC agent is an agent for connecting to Grafana Private Data source
+      Connect
+    digest: 70b5e84fb393c6f866bf184e5bfbcaf6e93fd2c4b842be3487ebc75e7e598881
+    home: https://grafana.com/docs/grafana-cloud/connect-externally-hosted/private-data-source-connect/
+    name: pdc-agent
+    sources:
+    - https://github.com/grafana/pdc-agent
+    type: application
+    urls:
+    - https://github.com/ArchiFleKs/helm-charts-1/releases/download/pdc-agent-0.0.4/pdc-agent-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: 0.0.45
     created: "2025-12-03T17:21:50.456504549Z"
     description: PDC agent is an agent for connecting to Grafana Private Data source
       Connect
@@ -17977,4 +17991,4 @@ entries:
     urls:
     - https://github.com/ArchiFleKs/helm-charts-1/releases/download/tempo-vulture-0.4.1/tempo-vulture-0.4.1.tgz
     version: 0.4.1
-generated: "2025-12-07T17:21:47.209102245Z"
+generated: "2025-12-08T11:21:50.951720501Z"
